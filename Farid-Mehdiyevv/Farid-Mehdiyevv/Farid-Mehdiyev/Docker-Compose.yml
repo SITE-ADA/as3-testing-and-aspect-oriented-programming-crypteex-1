@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  server:
+    image: farid-mehdiyev-server
+    build:
+      context: ./Farid-Mehdiyev\
+    ports:
+      - "8080:8080"
+    networks:
+      - farid-net
+
+  client:
+    image: farid-mehdiyev-client
+    build:
+      context: ./Farid-Mehdiyev-Client
+    ports:
+      - "8081:8081"
+    depends_on:
+      - server
+    networks:
+      - farid-net
+
+networks:
+  farid-net:
+    driver: bridge
